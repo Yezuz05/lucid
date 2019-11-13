@@ -5,6 +5,7 @@
         v-if="submitted"
         class="alert alert-success alert-dismissible fade show"
         role="alert"
+        @click="submitted = false"
       >
         Hurray!!! You have created a new user.
         <button
@@ -81,7 +82,7 @@
                   $v.form.description.$dirty && !$v.form.description.minLength
                 "
                 class="form-text text-danger"
-                >Description should have a minimum of 200 characters</small
+                >Description should have a minimum of 50 characters</small
               >
             </div>
             <div class="form-group">
@@ -148,7 +149,7 @@ export default {
       },
       description: {
         required,
-        minLength: minLength(200)
+        minLength: minLength(50)
       },
       gender: {
         required
@@ -168,6 +169,15 @@ export default {
     },
     submitForm() {
       this.submitted = true;
+      this.clearForm();
+    },
+    clearForm() {
+      // this.$v.$reset();
+      this.form.name = null;
+      this.form.email = null;
+      this.form.description = null;
+      this.form.gender = null;
+      this.$v.$reset();
     }
   }
 };
