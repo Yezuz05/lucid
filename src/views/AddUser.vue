@@ -160,14 +160,13 @@ export default {
       this.$v.$touch();
 
       if (!this.$v.$invalid) {
-        this.submitForm(this.form);
+        this.submitForm();
       }
     },
     touchInput(inputName) {
       this.$v.form[inputName].$touch();
     },
-    submitForm(form) {
-      console.log(form);
+    submitForm() {
       this.submitted = true;
     }
   }
